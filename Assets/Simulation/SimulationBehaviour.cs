@@ -6,7 +6,7 @@ using UnityEngine.Profiling;
 
 public class SimulationBehaviour : MonoBehaviour
 {
-    [SerializeField] private SimulationPort simulationPort = null;
+    [SerializeField] private SimulationPort simulationPort;
 
     private void FixedUpdate()
     {
@@ -16,7 +16,6 @@ public class SimulationBehaviour : MonoBehaviour
         simulationPort.SignalSorting();
         simulationPort.SignalResolution();
         simulationPort.SignalEndFixedUpdate();
-        
         Profiler.EndSample();
     }
 }

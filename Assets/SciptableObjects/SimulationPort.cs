@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[CreateAssetMenu(fileName = "SimulationPort", menuName = "SimulationPort")]
 public class SimulationPort : ScriptableObject
 {
-    public UnityAction OnBeginFixedUpdate;
-    public UnityAction OnIntegration;
-    public UnityAction OnSorting;
-    public UnityAction OnResolution;
-    public UnityAction OnEndFixedUpdate;
+    public UnityAction OnBeginFixedUpdate = delegate {};
+    public UnityAction OnIntegration = delegate {};
+    public UnityAction OnSorting = delegate {};
+    public UnityAction OnResolution = delegate {};
+    public UnityAction OnEndFixedUpdate = delegate {};
 
     public void SignalBeginFixedUpdate() => OnBeginFixedUpdate.Invoke();
     public void SignalIntegration() => OnIntegration.Invoke();
