@@ -4,25 +4,9 @@ using UnityEngine;
 
 public class MergeSort : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-	    int[] test = {40,235,6123,4,7,912,88234,234,5,7,77,338,1,0,0,-1,10};
-	    Debug.Log("Unsorted: ");
-        LogList(test);
-	    test = Sort(test);
-	    Debug.Log("Sorted: ");
-	    LogList(test);
-    }
-    private void LogList(int[] list) {
-	    string s = "";
-	    foreach (int i in list) {
-		    s = s + i + ", ";
-	    }
-	    Debug.Log(s);
-    }
-
-   private int[] Sort(int[] array) {
+    
+    
+    private float[] Sort(int[] array) {
 	// function merge_sort(list m) is
     // // Base case. A list of zero or one elements is sorted, by definition.
     // if length of m ≤ 1 then
