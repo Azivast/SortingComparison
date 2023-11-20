@@ -13,7 +13,7 @@ public class SimulationBehaviour : MonoBehaviour
         Profiler.BeginSample("Simulation", this);
         simulationPort.SignalBeginFixedUpdate();
         simulationPort.SignalIntegration();
-        simulationPort.SignalSorting();
+        simulationPort.SignalDetection();
         simulationPort.SignalResolution();
         simulationPort.SignalEndFixedUpdate();
         Profiler.EndSample();

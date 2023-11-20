@@ -7,7 +7,7 @@ using UnityEngine.Profiling;
 public class IntegrationBehaviour : MonoBehaviour
 {
     [SerializeField] private SimulationPort simulationPort;
-    [SerializeField] private SphereBehaviour[] spheres;
+    [SerializeField] private SphereCollection spheres;
 
     private void OnEnable() {
         simulationPort.OnIntegration += OnIntegration;
@@ -19,11 +19,9 @@ public class IntegrationBehaviour : MonoBehaviour
 
     public void OnIntegration() {
         Profiler.BeginSample("Integration", this);
-        //integrationPort.SignalBeginIntegration();
-        foreach (SphereBehaviour sphere in spheres) {
+        foreach (SphereBehaviour sphere in spheres.Behaviours) {
             sphere.Move();
         }
-        //integrationPort.SignalEndIntegration();
         Profiler.EndSample();
     }
 }

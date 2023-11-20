@@ -15,10 +15,10 @@ public class SphereBehaviour : MonoBehaviour {
     private Color highlightColor = Color.yellow;
 
     private bool highlighted = false;
+    
+    private float distance;
 
-    private void Start() {
-        direction = Random.insideUnitCircle; //TODO: Randomize with
-    }
+    public float Distance;
 
     public Vector3 Direction {
         get => direction;
@@ -39,8 +39,16 @@ public class SphereBehaviour : MonoBehaviour {
 
     }
 
+    private void Start() {
+        direction = Random.insideUnitCircle; //TODO: Randomize with seed
+    }
+    
     public void Move() {
         transform.position += direction * speed; // TODO: No deltaTime since it would affect timing results?
+    }
+
+    public void CalcDistance(Vector3 targetPos) {
+        distance = (transform.position - targetPos).magnitude;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

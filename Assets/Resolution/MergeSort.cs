@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MergeSort : MonoBehaviour
+public class MergeSort : ISortingAlgorithm
 {
     
     
-    private float[] Sort(int[] array) {
+    public SphereBehaviour[] Sort(SphereBehaviour[] spheres) {
 	// function merge_sort(list m) is
     // // Base case. A list of zero or one elements is sorted, by definition.
     // if length of m ≤ 1 then
@@ -29,14 +29,14 @@ public class MergeSort : MonoBehaviour
 
     // // Then merge the now-sorted sublists.
     // return merge(left, right)
-    	if (array.Length <= 1) return array; // TODO: Save array.length to variable?
+    	if (spheres.Length <= 1) return spheres; // TODO: Save array.length to variable?
 
-        int[] left = new int[Mathf.CeilToInt(array.Length/2f)];
-        int[] right = new int[array.Length/2];
+        SphereBehaviour[] left = new SphereBehaviour[Mathf.CeilToInt(spheres.Length/2f)];
+        SphereBehaviour[] right = new SphereBehaviour[spheres.Length/2];
 
-        for (int i = 0; i < array.Length; i++) {
-            if (i < left.Length) left[i] = array[i];
-            else right[i-left.Length] = array[i];
+        for (int i = 0; i < spheres.Length; i++) {
+            if (i < left.Length) left[i] = spheres[i];
+            else right[i-left.Length] = spheres[i];
         }
 
         left = Sort(left);
@@ -45,12 +45,12 @@ public class MergeSort : MonoBehaviour
         return Merge(left, right);
     }
 
-    private int[] Merge(int[] left, int[] right) {
-        int[] result = new int[left.Length + right.Length];
+    private SphereBehaviour[] Merge(SphereBehaviour[] left, SphereBehaviour[] right) {
+        SphereBehaviour[] result = new SphereBehaviour[left.Length + right.Length];
 
         int leftIndex = 0, rightIndex = 0, resultIndex = 0;
         while (leftIndex < left.Length && rightIndex < right.Length ) {
-            if (left[leftIndex] <= right[rightIndex]) {
+            if (left[leftIndex].Distance <= right[rightIndex].Distance) {
                 result[resultIndex] = left[leftIndex];
                 leftIndex++;
             }
