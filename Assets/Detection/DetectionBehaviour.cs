@@ -6,7 +6,7 @@ public class DetectionBehaviour : MonoBehaviour
 {
     [SerializeField] private SimulationPort simulationPort;
     [SerializeField] private SphereCollection spheres;
-    [SerializeField] private SphereBehaviour targetSphere;
+    [SerializeField] private Transform targetSphere;
 
     private void OnEnable() {
         simulationPort.OnDetection += OnDetection;
@@ -18,8 +18,8 @@ public class DetectionBehaviour : MonoBehaviour
 
     public void OnDetection() {
         UnityEngine.Profiling.Profiler.BeginSample("Detection", this);
-        foreach (SphereBehaviour sphere in spheres.Behaviours) {
-            sphere.CalcDistance(targetSphere.transform.position);
+        for (int i = 0; i < spheres.Behaviours.Length; i++) {
+            spheres.Behaviours[i].CalcDistance(targetSphere.transform.position);
         }
         UnityEngine.Profiling.Profiler.EndSample();
     }

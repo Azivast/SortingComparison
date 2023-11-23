@@ -16,9 +16,10 @@ public class SphereBehaviour : MonoBehaviour {
 
     private bool highlighted = false;
     private float distance;
-    private Vector2 movementSpace;
+    private Vector2 movementRestriction;
+    private const float deltaTimeSubtitute = 1 / 60f;
 
-    public float Distance;
+    [HideInInspector] public float Distance;
 
     public Vector3 Direction {
         get => direction;
@@ -30,50 +31,49 @@ public class SphereBehaviour : MonoBehaviour {
     }
     
     public Vector3 MovementSpace {
-        get => movementSpace;
-        set => movementSpace = value;
+        set => movementRestriction = value/2;
     }
 
     public bool Highlighted {
         get => highlighted;
-        set {
+        set
+        {
+            sr.color = value == true ? highlightColor : normalColor;
             highlighted = value;
-            if (value == true) sr.color = highlightColor;
-            else sr.color = normalColor;
         }
 
     }
 
-    private void Start() {
-        direction = Random.insideUnitCircle; //TODO: Randomize with seed
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    public void Setup(Vector2 movementSpace, float speed)
+    {
+        movementRestriction = movementSpace;
+        this.speed = speed;
+        direction = Random.insideUnitCircle.normalized; //TODO Verify that seed works
     }
     
     public void Move() {
-        transform.position += direction * speed; // TODO: No deltaTime since it would affect timing results?
+        transform.position += direction * (speed * deltaTimeSubtitute);
         CheckCollision();
     }
 
     public void CalcDistance(Vector3 targetPos) {
-        distance = (transform.position - targetPos).magnitude;
+        distance = (targetPos-transform.position).magnitude;
     }
 
-    private void CheckCollision() //TODO make pretty
+    private void CheckCollision()
     {
-        if (transform.position.x < -movementSpace.x/2)
+        if (Math.Abs(transform.position.x) > movementRestriction.x)
         {
-            direction.x = Mathf.Abs(direction.x);
+            direction.x = -direction.x;
         }
-        else if (transform.position.x > movementSpace.x/2)
+        if (Math.Abs(transform.position.y) > movementRestriction.y)
         {
-            direction.x = -Mathf.Abs(direction.x);
-        }
-        if (transform.position.y < -movementSpace.y/2)
-        {
-            direction.y = Mathf.Abs(direction.y);
-        }
-        else if (transform.position.y > movementSpace.y/2)
-        {
-            direction.y = -Mathf.Abs(direction.y);
+            direction.y = -direction.y;
         }
     }
 }

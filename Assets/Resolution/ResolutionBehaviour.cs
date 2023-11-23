@@ -6,9 +6,9 @@ public class ResolutionBehaviour : MonoBehaviour
 {
     [SerializeField] private SimulationPort simulationPort;
     [SerializeField] private SphereCollection spheres;
-    [SerializeField] private ISortingAlgorithm algorithm = new InsertSort();
+    [SerializeField] private ISortingAlgorithm algorithm = new MergeSort();
     
-    private const int SPHERESTOHIGHLIGHT = 10;
+    [SerializeField] private int spheresToHighlight = 10;
 
     private void OnEnable() {
         simulationPort.OnResolution += OnResolution;
@@ -20,12 +20,11 @@ public class ResolutionBehaviour : MonoBehaviour
 
     private void OnResolution() {
         UnityEngine.Profiling.Profiler.BeginSample("Resolution", this);
-        algorithm.Sort(spheres.Behaviours);
-
-        for (int i = 0; i < SPHERESTOHIGHLIGHT; i++) {
+        spheres.Behaviours = algorithm.Sort(spheres.Behaviours);
+        for (int i = 0; i < spheresToHighlight; i++) {
             spheres.Behaviours[i].Highlighted = true;
         }
-        for (int i = SPHERESTOHIGHLIGHT; i < spheres.Behaviours.Length; i++) {
+        for (int i = spheresToHighlight; i < spheres.Behaviours.Length; i++) {
             spheres.Behaviours[i].Highlighted = false;
         }
         UnityEngine.Profiling.Profiler.EndSample();

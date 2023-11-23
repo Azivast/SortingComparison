@@ -16,10 +16,10 @@ public class SphereCollection : ScriptableObject {
         GameObjects = new GameObject[size];
     }
 
-    public void Add(GameObject gameObject, Vector2 movementSpace, int index)
+    public void Add(GameObject gameObject, Vector2 movementSpace, float speed, int seed, int index)
     {
         GameObjects[index] = gameObject;
         Behaviours[index] = gameObject.GetComponent<SphereBehaviour>();
-        Behaviours[index].MovementSpace = movementSpace;
+        Behaviours[index].Setup(movementSpace, speed);
     }
 }
