@@ -15,8 +15,8 @@ public class SphereBehaviour : MonoBehaviour {
     private Color highlightColor = Color.yellow;
 
     private bool highlighted = false;
-    
     private float distance;
+    private Vector2 movementSpace;
 
     public float Distance;
 
@@ -27,6 +27,11 @@ public class SphereBehaviour : MonoBehaviour {
     public float Speed {
         get => speed;
         set => speed = value;
+    }
+    
+    public Vector3 MovementSpace {
+        get => movementSpace;
+        set => movementSpace = value;
     }
 
     public bool Highlighted {
@@ -45,13 +50,30 @@ public class SphereBehaviour : MonoBehaviour {
     
     public void Move() {
         transform.position += direction * speed; // TODO: No deltaTime since it would affect timing results?
+        CheckCollision();
     }
 
     public void CalcDistance(Vector3 targetPos) {
         distance = (transform.position - targetPos).magnitude;
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        direction = Vector2.Reflect(direction, other.contacts[0].normal); //TODO: composite normal from all contacts
+    private void CheckCollision() //TODO make pretty
+    {
+        if (transform.position.x < -movementSpace.x/2)
+        {
+            direction.x = Mathf.Abs(direction.x);
+        }
+        else if (transform.position.x > movementSpace.x/2)
+        {
+            direction.x = -Mathf.Abs(direction.x);
+        }
+        if (transform.position.y < -movementSpace.y/2)
+        {
+            direction.y = Mathf.Abs(direction.y);
+        }
+        else if (transform.position.y > movementSpace.y/2)
+        {
+            direction.y = -Mathf.Abs(direction.y);
+        }
     }
 }
