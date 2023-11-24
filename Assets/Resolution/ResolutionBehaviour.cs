@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ISortingAlgorithm))]
 public class ResolutionBehaviour : MonoBehaviour
 {
     [SerializeField] private SimulationPort simulationPort;
     [SerializeField] private SphereCollection spheres;
-    [SerializeField] private ISortingAlgorithm algorithm = new MergeSort();
-    
     [SerializeField] private int spheresToHighlight = 10;
+    private ISortingAlgorithm algorithm;
+
+    private void Awake()
+    {
+        algorithm = GetComponent<ISortingAlgorithm>();
+    }
 
     private void OnEnable() {
         simulationPort.OnResolution += OnResolution;

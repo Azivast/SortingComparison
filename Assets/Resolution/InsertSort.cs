@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsertSort : ISortingAlgorithm
+public class InsertSort : MonoBehaviour,ISortingAlgorithm
 {
     private void LogList(int[] list) {
 	    string s = "";

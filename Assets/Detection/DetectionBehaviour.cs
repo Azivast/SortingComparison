@@ -16,7 +16,7 @@ public class DetectionBehaviour : MonoBehaviour
         simulationPort.OnDetection -= OnDetection;
     }
 
-    public void OnDetection() {
+    private void OnDetection() {
         UnityEngine.Profiling.Profiler.BeginSample("Detection", this);
         for (int i = 0; i < spheres.Behaviours.Length; i++) {
             spheres.Behaviours[i].CalcDistance(targetSphere.transform.position);

@@ -15,7 +15,6 @@ public class SphereBehaviour : MonoBehaviour {
     private Color highlightColor = Color.yellow;
 
     private bool highlighted = false;
-    private float distance;
     private Vector2 movementRestriction;
     private const float deltaTimeSubtitute = 1 / 60f;
 
@@ -62,7 +61,7 @@ public class SphereBehaviour : MonoBehaviour {
     }
 
     public void CalcDistance(Vector3 targetPos) {
-        distance = (targetPos-transform.position).magnitude;
+        Distance = (targetPos-transform.position).sqrMagnitude; // sqr more effective, order will be the same
     }
 
     private void CheckCollision()
