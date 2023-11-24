@@ -9,7 +9,7 @@ public class SphereBehaviour : MonoBehaviour {
     private SpriteRenderer sr;
     
     private Vector3 direction = Vector3.down;
-    private float speed = 0.1f;
+    private float speed = 3f;
 
     private Color normalColor = Color.white;
     private Color highlightColor = Color.yellow;
@@ -24,11 +24,7 @@ public class SphereBehaviour : MonoBehaviour {
         get => direction;
         set => direction = value;
     }
-    public float Speed {
-        get => speed;
-        set => speed = value;
-    }
-    
+
     public Vector3 MovementSpace {
         set => movementRestriction = value/2;
     }
@@ -48,10 +44,9 @@ public class SphereBehaviour : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
     }
 
-    public void Setup(Vector2 movementSpace, float speed)
+    public void Setup(Vector2 movementSpace)
     {
         movementRestriction = movementSpace;
-        this.speed = speed;
         direction = Random.insideUnitCircle.normalized; //TODO Verify that seed works
     }
     

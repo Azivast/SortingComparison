@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MergeSort : MonoBehaviour,ISortingAlgorithm
+public class MergeSort : SortingAlgorithm
 {
-    
-    
-    public SphereBehaviour[] Sort(SphereBehaviour[] spheres) {
+    public override SphereBehaviour[] Sort(SphereBehaviour[] spheres) {
 	// function merge_sort(list m) is
     // // Base case. A list of zero or one elements is sorted, by definition.
     // if length of m ≤ 1 then

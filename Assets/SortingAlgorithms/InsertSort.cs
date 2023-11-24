@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsertSort : MonoBehaviour,ISortingAlgorithm
+public class InsertSort : SortingAlgorithm
 {
     private void LogList(int[] list) {
 	    string s = "";
@@ -12,7 +12,7 @@ public class InsertSort : MonoBehaviour,ISortingAlgorithm
 	    Debug.Log(s);
     }
 
-    public SphereBehaviour[] Sort(SphereBehaviour[] spheres)
+    public override SphereBehaviour[] Sort(SphereBehaviour[] spheres)
     {
     //     i ← 1
     //     while i < length(A)

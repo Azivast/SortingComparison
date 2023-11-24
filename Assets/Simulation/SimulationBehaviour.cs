@@ -12,7 +12,6 @@ public class SimulationBehaviour : MonoBehaviour
     [SerializeField] private int numberOfSpheres = 20;
     [SerializeField] private Vector2 simulationSpace = new Vector2(1920, 1080);
     [SerializeField] private Transform sphereParent;
-    [SerializeField] private float sphereSpeed = 3;
     [SerializeField] private int Seed = 1234567;
     
     
@@ -27,7 +26,7 @@ public class SimulationBehaviour : MonoBehaviour
         for (int i = 0; i < numberOfSpheres; i++)
         {
             GameObject sphere = Instantiate(spheres.SpherePrefab, sphereParent);
-            spheres.Add(sphere, simulationSpace, sphereSpeed, Seed, i);
+            spheres.Add(sphere, simulationSpace, Seed, i);
         }
 
         Profiler.EndSample();

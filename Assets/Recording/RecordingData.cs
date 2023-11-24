@@ -8,7 +8,7 @@ public class RecordingData : MonoBehaviour
     public List<string> data = new List<string>();
 
 
-    public void AddDataEntry(string ballAmount, float timeConsumption)
+    public void AddEntry(string ballAmount, float timeConsumption)
     {
         data.Add(ballAmount + "," + timeConsumption);
     }
