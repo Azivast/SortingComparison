@@ -9,7 +9,7 @@ public class SphereBehaviour : MonoBehaviour {
     private SpriteRenderer sr;
     
     private Vector3 direction = Vector3.down;
-    private float speed = 3f;
+    [SerializeField] private float speed = 2f;
 
     private Color normalColor = Color.white;
     private Color highlightColor = Color.yellow;

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0f497b36a23f54882768f2e19bbfc8, type: 3}
+  m_Name: ExperimentSettings
+  m_EditorClassIdentifier: 
+  NumberOfSpheres: 20
+  SphereIncrease: 20
+  SpheresToHighlight: 10
+  Seed: 1234567
+  SampleRate: 10
+  CancelTime: 1

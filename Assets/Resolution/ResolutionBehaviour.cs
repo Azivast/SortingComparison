@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class ResolutionBehaviour : MonoBehaviour
 {
+    [SerializeField] private ExperimentSettings settings;
     [SerializeField] private SimulationPort simulationPort;
     [SerializeField] private SphereCollection spheres;
-    [SerializeField] private int spheresToHighlight = 10;
-    private SortingAlgorithm algorithm;
 
     private void OnEnable() {
         simulationPort.OnResolution += OnResolution;
@@ -20,11 +19,11 @@ public class ResolutionBehaviour : MonoBehaviour
 
     private void OnResolution() {
         UnityEngine.Profiling.Profiler.BeginSample("Resolution", this);
-        spheres.Behaviours = algorithm.Sort(spheres.Behaviours);
-        for (int i = 0; i < spheresToHighlight; i++) {
+        spheres.Behaviours = settings.Algorithm.Sort(spheres.Behaviours);
+        for (int i = 0; i < settings.SpheresToHighlight; i++) {
             spheres.Behaviours[i].Highlighted = true;
         }
-        for (int i = spheresToHighlight; i < spheres.Behaviours.Length; i++) {
+        for (int i = settings.SpheresToHighlight; i < spheres.Behaviours.Count; i++) {
             spheres.Behaviours[i].Highlighted = false;
         }
         UnityEngine.Profiling.Profiler.EndSample();

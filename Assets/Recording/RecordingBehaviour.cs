@@ -7,7 +7,9 @@ public class RecordingBehaviour : MonoBehaviour
 {
     [SerializeField] private SimulationPort simulationPort; 
     [SerializeField] private ExperimentPort experimentPort;
-    [SerializeField] private string destination = "Data/";
+    [SerializeField] private ExperimentSettings settings;
+    [SerializeField] private SphereCollection spheres;
+    [SerializeField] private string destination = "Results/";
 
     private RecordingData data = new RecordingData();
     private FileIO fileIO = new FileIO();
@@ -23,12 +25,14 @@ public class RecordingBehaviour : MonoBehaviour
     private void OnEnable() {
         simulationPort.OnBeginUpdate += OnBeginUpdate;
         simulationPort.OnEndUpdate += OnEndUpdate;
+        experimentPort.OnBeginSimulation += OnBeginSimulation;
         experimentPort.OnEndSimulation += OnEndSimulation;
     }
 
     private void OnDisable() {
         simulationPort.OnBeginUpdate -= OnBeginUpdate;
         simulationPort.OnEndUpdate -= OnEndUpdate;
+        experimentPort.OnBeginSimulation -= OnBeginSimulation;
         experimentPort.OnEndSimulation -= OnEndSimulation;
     }
 
@@ -38,12 +42,21 @@ public class RecordingBehaviour : MonoBehaviour
     }
     private void OnEndUpdate()
     {
-        UnityEngine.Profiling.Profiler.BeginSample("Recording", this);
+        UnityEngine.Profiling.Profiler.BeginSample("Add Recorded Data", this);
         frameTotalTime = frameStartTime - Time.time;
-        //data.AddEntry(frameTotalTime);
+        data.AddEntry(spheres.GameObjects.Count, frameTotalTime);
+        if (frameTotalTime >= settings.CancelTime) experimentPort.SignalEndSimulation();
         UnityEngine.Profiling.Profiler.EndSample();
     }
 
+    private void OnBeginSimulation()
+    {
+        data.data.Clear();
+        data.AlgorithmName = settings.Algorithm.GetType().Name;
+        Debug.Log(settings.Algorithm.GetType().Name);
+        fileIO.VerifyWritable();
+    }
+    
     private void OnEndSimulation()
     {
         fileIO.SaveFile(data);

@@ -18,9 +18,11 @@ public class DetectionBehaviour : MonoBehaviour
 
     private void OnDetection() {
         UnityEngine.Profiling.Profiler.BeginSample("Detection", this);
-        for (int i = 0; i < spheres.Behaviours.Length; i++) {
-            spheres.Behaviours[i].CalcDistance(targetSphere.transform.position);
+        foreach (var behaviour in spheres.Behaviours)
+        {
+            behaviour.CalcDistance(targetSphere.transform.position);
         }
+  
         UnityEngine.Profiling.Profiler.EndSample();
     }
 }

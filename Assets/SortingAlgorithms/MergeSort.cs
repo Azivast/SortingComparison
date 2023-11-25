@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MergeSort : SortingAlgorithm
 {
-    public override SphereBehaviour[] Sort(SphereBehaviour[] spheres) {
+    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres) {
 	// function merge_sort(list m) is
     // // Base case. A list of zero or one elements is sorted, by definition.
     // if length of m ≤ 1 then
@@ -27,14 +28,14 @@ public class MergeSort : SortingAlgorithm
 
     // // Then merge the now-sorted sublists.
     // return merge(left, right)
-    	if (spheres.Length <= 1) return spheres; // TODO: Save array.length to variable?
+    	if (spheres.Count <= 1) return spheres; // TODO: Save array.length to variable?
 
-        SphereBehaviour[] left = new SphereBehaviour[Mathf.CeilToInt(spheres.Length/2f)];
-        SphereBehaviour[] right = new SphereBehaviour[spheres.Length/2];
+        List<SphereBehaviour> left = new List<SphereBehaviour>(Mathf.CeilToInt(spheres.Count/2f));
+        List<SphereBehaviour> right = new List<SphereBehaviour>(spheres.Count/2);
 
-        for (int i = 0; i < spheres.Length; i++) {
-            if (i < left.Length) left[i] = spheres[i];
-            else right[i-left.Length] = spheres[i];
+        for (int i = 0; i < spheres.Count; i++) {
+            if (i < left.Count) left[i] = spheres[i];
+            else right[i-left.Count] = spheres[i];
         }
 
         left = Sort(left);
@@ -43,11 +44,11 @@ public class MergeSort : SortingAlgorithm
         return Merge(left, right);
     }
 
-    private SphereBehaviour[] Merge(SphereBehaviour[] left, SphereBehaviour[] right) {
-        SphereBehaviour[] result = new SphereBehaviour[left.Length + right.Length];
+    private List<SphereBehaviour> Merge(List<SphereBehaviour> left, List<SphereBehaviour> right) {
+        List<SphereBehaviour> result = new List<SphereBehaviour>(left.Count + right.Count);
 
         int leftIndex = 0, rightIndex = 0, resultIndex = 0;
-        while (leftIndex < left.Length && rightIndex < right.Length ) {
+        while (leftIndex < left.Count && rightIndex < right.Count ) {
             if (left[leftIndex].Distance <= right[rightIndex].Distance) {
                 result[resultIndex] = left[leftIndex];
                 leftIndex++;
@@ -61,13 +62,13 @@ public class MergeSort : SortingAlgorithm
 
         // Either left or right may have elements left; consume them.
         // (Only one of the following loops will actually be entered.)'
-        while (leftIndex != left.Length) {
+        while (leftIndex != left.Count) {
             result[resultIndex] = left[leftIndex];
             leftIndex++;
             resultIndex++;
         }
 
-        while (rightIndex < right.Length) {
+        while (rightIndex < right.Count) {
             result[resultIndex] = right[rightIndex];
             rightIndex++;
             resultIndex++;

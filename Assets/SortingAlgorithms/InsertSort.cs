@@ -12,7 +12,7 @@ public class InsertSort : SortingAlgorithm
 	    Debug.Log(s);
     }
 
-    public override SphereBehaviour[] Sort(SphereBehaviour[] spheres)
+    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres)
     {
     //     i ← 1
     //     while i < length(A)
@@ -27,7 +27,7 @@ public class InsertSort : SortingAlgorithm
     // TODO: Better implementation available on wikipedia
     
     int i = 1;
-    while (i < spheres.Length) { // TODO: Replace with for-loop
+    while (i < spheres.Count) { // TODO: Replace with for-loop
 	    int j = i;
 	    while (j > 0 && spheres[j-1].Distance > spheres[j].Distance) {
 		    // int tmp = sizes[j-1]; // swap j and j-1
