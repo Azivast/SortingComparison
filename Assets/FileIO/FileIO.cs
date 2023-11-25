@@ -10,9 +10,9 @@ public class FileIO
     public string Directory = "Results/";
     private const string EXTENSION = ".csv";
     
-    public void SaveFile(RecordingData data)
+    public bool SaveFile(RecordingData data)
     {
-        string fileName = data.AlgorithmName + " " + DateTime.Now + EXTENSION;
+        string fileName = data.AlgorithmName + " " + DateTime.Now.ToString("yyyy-MM-dd hhmm") + EXTENSION;
         System.IO.Directory.CreateDirectory(Directory);
         using (StreamWriter writer = File.CreateText(Directory+fileName))
         {
@@ -21,6 +21,7 @@ public class FileIO
                 writer.WriteLine(entry); //TODO: aahhhh where is the comma separator ??
             }
         }
+        return true;
     }
 
     public void VerifyWritable()

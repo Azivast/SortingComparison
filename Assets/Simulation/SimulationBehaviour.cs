@@ -16,6 +16,7 @@ public class SimulationBehaviour : MonoBehaviour
     [SerializeField] private SphereBehaviour targetSphere;
 
     private int frame = 0;
+    private bool finished = false;
     
     private void Start()
     {
@@ -27,13 +28,6 @@ public class SimulationBehaviour : MonoBehaviour
 
     private void Update()
     {
-        Profiler.BeginSample("Spawn spheres", this);
-        if (frame != 0 && frame%settings.IncreaseInterval == 0)
-        {
-            if (spheres.GameObjects.Count >= settings.MaxSpheres) experimentPort.SignalEndSimulation();
-            else SpawnSpheres(settings.SphereIncrease);
-        }
-        Profiler.EndSample();
         Profiler.BeginSample("Simulation", this);
         simulationPort.SignalBeginUpdate();
         simulationPort.SignalIntegration();
@@ -42,6 +36,17 @@ public class SimulationBehaviour : MonoBehaviour
         simulationPort.SignalEndUpdate();
         Profiler.EndSample();
         frame++;
+        
+        Profiler.BeginSample("Spawn spheres", this);
+        if (frame%settings.IncreaseInterval == 0)
+        {
+            if (spheres.GameObjects.Count >= settings.MaxSpheres) {
+                experimentPort.SignalEndSimulation();
+                Destroy(this); // TODO: Implement better simulation stop
+            }
+            else SpawnSpheres(settings.SphereIncrease);
+        }
+        Profiler.EndSample();
     }
 
     private void SpawnSpheres(int amount)

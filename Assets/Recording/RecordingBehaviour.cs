@@ -29,7 +29,7 @@ public class RecordingBehaviour : MonoBehaviour
         experimentPort.OnEndSimulation += OnEndSimulation;
     }
 
-    private void OnDisable() {
+    private void OnDisable() { 
         simulationPort.OnBeginUpdate -= OnBeginUpdate;
         simulationPort.OnEndUpdate -= OnEndUpdate;
         experimentPort.OnBeginSimulation -= OnBeginSimulation;
@@ -38,12 +38,12 @@ public class RecordingBehaviour : MonoBehaviour
 
     private void OnBeginUpdate()
     {
-        frameStartTime = Time.time;
+        frameStartTime = Time.realtimeSinceStartup;
     }
     private void OnEndUpdate()
     {
         UnityEngine.Profiling.Profiler.BeginSample("Add Recorded Data", this);
-        frameTotalTime = frameStartTime - Time.time;
+        frameTotalTime = frameStartTime - Time.realtimeSinceStartup;
         data.AddEntry(spheres.GameObjects.Count, frameTotalTime);
         if (frameTotalTime >= settings.CancelTime) experimentPort.SignalEndSimulation();
         UnityEngine.Profiling.Profiler.EndSample();
@@ -59,6 +59,15 @@ public class RecordingBehaviour : MonoBehaviour
     
     private void OnEndSimulation()
     {
-        fileIO.SaveFile(data);
+        if (fileIO.SaveFile(data))
+        {
+            Debug.Log("Simulation finished, result saved.");
+            //TODO: This should not be done from here
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+            Application.Quit();
+        }
+            
     }
 }

@@ -41,5 +41,5 @@ public class ExperminetBehaviour : MonoBehaviour
         settings.SampleRate = sampleRate;
         settings.CancelTime = cancelTime;
         settings.Algorithm = selectedAlgorithm;
-    }
+    } 
 }

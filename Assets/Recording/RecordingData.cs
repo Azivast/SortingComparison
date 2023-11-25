@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecordingData : MonoBehaviour
+public class RecordingData
 {
     public string AlgorithmName = "null";
     public List<string> data = new List<string>();
@@ -10,6 +10,6 @@ public class RecordingData : MonoBehaviour
 
     public void AddEntry(int ballAmount, float timeConsumption)
     {
-        data.Add(ballAmount + "," + timeConsumption);
+        data.Add(ballAmount + ";" + timeConsumption);
     }
 }
