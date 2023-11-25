@@ -28,14 +28,17 @@ public class MergeSort : SortingAlgorithm
 
     // // Then merge the now-sorted sublists.
     // return merge(left, right)
-    	if (spheres.Count <= 1) return spheres; // TODO: Save array.length to variable?
+    	if (spheres.Count <= 1) return spheres;
 
-        List<SphereBehaviour> left = new List<SphereBehaviour>(Mathf.CeilToInt(spheres.Count/2f));
-        List<SphereBehaviour> right = new List<SphereBehaviour>(spheres.Count/2);
+        int leftCapacity = Mathf.CeilToInt(spheres.Count / 2f);
+        int rightCapacity = spheres.Count/2;
+        List<SphereBehaviour> left = new List<SphereBehaviour>(leftCapacity);
+        List<SphereBehaviour> right = new List<SphereBehaviour>(rightCapacity);
+
 
         for (int i = 0; i < spheres.Count; i++) {
-            if (i < left.Count) left[i] = spheres[i];
-            else right[i-left.Count] = spheres[i];
+            if (i < leftCapacity) left.Add(spheres[i]);
+            else right.Add(spheres[i]);
         }
 
         left = Sort(left);
@@ -50,11 +53,11 @@ public class MergeSort : SortingAlgorithm
         int leftIndex = 0, rightIndex = 0, resultIndex = 0;
         while (leftIndex < left.Count && rightIndex < right.Count ) {
             if (left[leftIndex].Distance <= right[rightIndex].Distance) {
-                result[resultIndex] = left[leftIndex];
+                result.Add(left[leftIndex]);
                 leftIndex++;
             }
             else {
-                result[resultIndex] = right[rightIndex];
+                result.Add(right[rightIndex]);
                 rightIndex++;
             }
             resultIndex++;
@@ -63,13 +66,13 @@ public class MergeSort : SortingAlgorithm
         // Either left or right may have elements left; consume them.
         // (Only one of the following loops will actually be entered.)'
         while (leftIndex != left.Count) {
-            result[resultIndex] = left[leftIndex];
+            result.Add(left[leftIndex]);
             leftIndex++;
             resultIndex++;
         }
 
         while (rightIndex < right.Count) {
-            result[resultIndex] = right[rightIndex];
+            result.Add(right[rightIndex]);
             rightIndex++;
             resultIndex++;
         }

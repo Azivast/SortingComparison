@@ -18,7 +18,7 @@ public class FileIO
         {
             foreach (string entry in data.data)
             {
-                writer.WriteLine(entry); //TODO: aahhhh where is the comma separator ??
+                writer.WriteLine(entry);
             }
         }
         return true;
