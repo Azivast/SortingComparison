@@ -53,6 +53,8 @@ public class RecordingBehaviour : MonoBehaviour
     {
         data.data.Clear();
         data.AlgorithmName = settings.Algorithm.GetType().Name;
+        data.data.Add("Algorithm:");
+        data.data.Add("Sphere Count;Frame Time");
         Debug.Log(settings.Algorithm.GetType().Name);
         fileIO.VerifyWritable();
     }

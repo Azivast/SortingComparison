@@ -16,7 +16,6 @@ public class SimulationBehaviour : MonoBehaviour
     [SerializeField] private SphereBehaviour targetSphere;
 
     private int frame = 0;
-    private bool finished = false;
     
     private void Start()
     {

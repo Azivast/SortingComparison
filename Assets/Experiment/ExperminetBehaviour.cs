@@ -16,9 +16,8 @@ public class ExperminetBehaviour : MonoBehaviour
 
     [SerializeField] private int sampleRate = 10;
     [SerializeField] private float cancelTime = 1.0f;
-
-
-    [SerializeField] private SortingAlgorithm selectedAlgorithm;
+    
+    [SerializeField] private SortingAlgorithm[] AlgortihmsToTest;
 
     private void Awake()
     {
@@ -40,6 +39,30 @@ public class ExperminetBehaviour : MonoBehaviour
         settings.Seed = seed;
         settings.SampleRate = sampleRate;
         settings.CancelTime = cancelTime;
-        settings.Algorithm = selectedAlgorithm;
-    } 
+    }
+
+    private void RunExperiments()
+    {
+        for (int spheres = startSpheres; spheres < maxSpheres; spheres += sphereIncrease) 
+        {
+            foreach (var algorithm in AlgortihmsToTest) {
+                RunSimulation(algorithm, spheres);
+                // Store data?
+            }
+        }
+        
+        // Once finished write data to file
+    }
+
+    private void RunSimulation(SortingAlgorithm algorithm, int spheres)
+    {
+        // Spawn spheres
+        experimentPort.SignalSpawnSpheres(startSpheres, seed);
+
+        // Run algorithm
+        settings.Algorithm = algorithm;
+        experimentPort.SignalBeginSimulation();
+
+        // Save Data
+    }
 }
