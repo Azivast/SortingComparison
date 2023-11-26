@@ -19,9 +19,10 @@ public class BubbleSort : SortingAlgorithm {
         //     until not swapped 
         // end procedure
 
-        bool swapped = false;
-        do {
-
+        bool swapped;
+        do
+        {
+            swapped = false;
             for (int i = 1; i < spheres.Count; i++) {
                 // if not in order
                 if (spheres[i - 1].Distance > spheres[i].Distance) {

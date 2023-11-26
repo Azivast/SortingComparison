@@ -9,6 +9,7 @@ public class SphereBehaviour : MonoBehaviour {
     private SpriteRenderer sr;
     
     private Vector3 direction = Vector3.down;
+    private Vector3 initialDirection;
     [SerializeField] private float speed = 2f;
 
     private Color normalColor = Color.white;
@@ -48,6 +49,7 @@ public class SphereBehaviour : MonoBehaviour {
     {
         movementRestriction = movementSpace;
         direction = Random.insideUnitCircle.normalized; //TODO Verify that seed works
+        initialDirection = direction;
     }
     
     public void Move() {
@@ -69,5 +71,11 @@ public class SphereBehaviour : MonoBehaviour {
         {
             direction.y = -direction.y;
         }
+    }
+
+    public void Reset()
+    {
+        direction = initialDirection;
+        transform.position = Vector3.zero;
     }
 }

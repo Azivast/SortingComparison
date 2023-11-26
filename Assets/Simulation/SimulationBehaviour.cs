@@ -10,21 +10,9 @@ public class SimulationBehaviour : MonoBehaviour
     [SerializeField] private ExperimentSettings settings;
     [SerializeField] private ExperimentPort experimentPort;
     [SerializeField] private SimulationPort simulationPort;
-    [SerializeField] private SphereCollection spheres;
-    [SerializeField] private Vector2 simulationSpace = new Vector2(5, 5);
-    [SerializeField] private Transform sphereParent;
-    [SerializeField] private SphereBehaviour targetSphere;
 
-    private int frame = 0;
+    [SerializeField]private float elapsedFrames;
     
-    private void Start()
-    {
-        Random.InitState(settings.Seed);
-        targetSphere.Setup(simulationSpace);
-        spheres.Clear();
-        SpawnSpheres(settings.StartSpheres);
-    }
-
     private void Update()
     {
         Profiler.BeginSample("Simulation", this);
@@ -33,27 +21,12 @@ public class SimulationBehaviour : MonoBehaviour
         simulationPort.SignalDetection();
         simulationPort.SignalResolution();
         simulationPort.SignalEndUpdate();
-        Profiler.EndSample();
-        frame++;
-        
-        Profiler.BeginSample("Spawn spheres", this);
-        if (frame%settings.IncreaseInterval == 0)
+        elapsedFrames++;
+        if (elapsedFrames >= settings.SimulationDuration)
         {
-            if (spheres.GameObjects.Count >= settings.MaxSpheres) {
-                experimentPort.SignalEndSimulation();
-                Destroy(this); // TODO: Implement better simulation stop
-            }
-            else SpawnSpheres(settings.SphereIncrease);
+            experimentPort.SignalEndSimulation();
+            elapsedFrames = 0;
         }
         Profiler.EndSample();
-    }
-
-    private void SpawnSpheres(int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject sphere = Instantiate(spheres.SpherePrefab, sphereParent);
-            spheres.Add(sphere, simulationSpace, settings.Seed);
-        }
     }
 }

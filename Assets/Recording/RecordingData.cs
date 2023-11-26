@@ -2,14 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecordingData
+[CreateAssetMenu(fileName = "RecordingData", menuName = "RecordingData")]
+public class RecordingData : ScriptableObject
 {
-    public string AlgorithmName = "null";
     public List<string> data = new List<string>();
-
-
-    public void AddEntry(int ballAmount, float timeConsumption)
+    
+    public void NewBallAmount(int ballAmount)
     {
-        data.Add(ballAmount + ";" + timeConsumption);
+        data.Add(ballAmount.ToString());
+    }
+    
+    public void AddTime(float timeConsumption)
+    {
+        data[^1] += ";" + timeConsumption;
+    }
+
+    public void Reset(string firstRow)
+    {
+        data.Clear();
+        data.Add(firstRow);
     }
 }

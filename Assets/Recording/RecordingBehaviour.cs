@@ -10,9 +10,12 @@ public class RecordingBehaviour : MonoBehaviour
     [SerializeField] private ExperimentSettings settings;
     [SerializeField] private SphereCollection spheres;
     [SerializeField] private string destination = "Results/";
+    [SerializeField] private RecordingData data;
 
-    private RecordingData data = new RecordingData();
     private FileIO fileIO = new FileIO();
+    
+    private List<float> recordedTimes = new List<float>();
+    private int samples = 0;
 
     private float frameTotalTime;
     private float frameStartTime;
@@ -27,6 +30,8 @@ public class RecordingBehaviour : MonoBehaviour
         simulationPort.OnEndUpdate += OnEndUpdate;
         experimentPort.OnBeginSimulation += OnBeginSimulation;
         experimentPort.OnEndSimulation += OnEndSimulation;
+        experimentPort.OnBeginExperiment += OnBeginExperiment;
+        experimentPort.OnEndExperiment += OnEndExperiment;
     }
 
     private void OnDisable() { 
@@ -34,6 +39,8 @@ public class RecordingBehaviour : MonoBehaviour
         simulationPort.OnEndUpdate -= OnEndUpdate;
         experimentPort.OnBeginSimulation -= OnBeginSimulation;
         experimentPort.OnEndSimulation -= OnEndSimulation;
+        experimentPort.OnBeginExperiment -= OnBeginExperiment;
+        experimentPort.OnEndExperiment -= OnEndExperiment;
     }
 
     private void OnBeginUpdate()
@@ -43,33 +50,38 @@ public class RecordingBehaviour : MonoBehaviour
     private void OnEndUpdate()
     {
         UnityEngine.Profiling.Profiler.BeginSample("Add Recorded Data", this);
-        frameTotalTime = frameStartTime - Time.realtimeSinceStartup;
-        data.AddEntry(spheres.GameObjects.Count, frameTotalTime);
+        frameTotalTime = Time.realtimeSinceStartup-frameStartTime;
+        recordedTimes.Add(frameTotalTime);
         if (frameTotalTime >= settings.CancelTime) experimentPort.SignalEndSimulation();
         UnityEngine.Profiling.Profiler.EndSample();
     }
 
     private void OnBeginSimulation()
     {
-        data.data.Clear();
-        data.AlgorithmName = settings.Algorithm.GetType().Name;
-        data.data.Add("Algorithm:");
-        data.data.Add("Sphere Count;Frame Time");
+        recordedTimes.Clear();
         Debug.Log(settings.Algorithm.GetType().Name);
-        fileIO.VerifyWritable();
     }
     
     private void OnEndSimulation()
     {
-        if (fileIO.SaveFile(data))
+        float averageTime = 0;
+        foreach (int time in recordedTimes)
         {
-            Debug.Log("Simulation finished, result saved.");
-            //TODO: This should not be done from here
-            #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-            #endif
-            Application.Quit();
+            averageTime += time;
         }
-            
+        averageTime /= recordedTimes.Count;
+
+        data.AddTime(averageTime);
+    }
+
+    private void OnBeginExperiment()
+    {
+        fileIO.VerifyWritable();
+        recordedTimes.Clear();
+    }
+
+    private void OnEndExperiment()
+    {
+        fileIO.SaveFile(data);
     }
 }

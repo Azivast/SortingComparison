@@ -12,7 +12,7 @@ public class FileIO
     
     public bool SaveFile(RecordingData data)
     {
-        string fileName = data.AlgorithmName + " " + DateTime.Now.ToString("yyyy-MM-dd hhmm") + EXTENSION;
+        string fileName = DateTime.Now.ToString("yyyy-MM-dd hhmmss") + EXTENSION;
         System.IO.Directory.CreateDirectory(Directory);
         using (StreamWriter writer = File.CreateText(Directory+fileName))
         {
