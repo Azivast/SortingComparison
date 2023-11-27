@@ -11,7 +11,7 @@ public class FileIO
     
     public bool SaveFile(RecordingData data)
     {
-        string fileName = DateTime.Now.ToString("yyyy-MM-dd hhmmss") + EXTENSION;
+        string fileName = DateTime.Now.ToString("yyyy-MM-dd HHmmss") + EXTENSION;
         using (StreamWriter writer = File.CreateText(fileName))
         {
             foreach (string entry in data.data)
