@@ -30,9 +30,6 @@ public class InsertSort : SortingAlgorithm
     while (i < spheres.Count) { // TODO: Replace with for-loop
 	    int j = i;
 	    while (j > 0 && spheres[j-1].Distance > spheres[j].Distance) {
-		    // int tmp = sizes[j-1]; // swap j and j-1
-		    // sizes[j-1] = sizes[j];
-		    // sizes[j] = tmp;
 		    (spheres[j-1], spheres[j]) = (spheres[j], spheres[j-1]);
 		    j--;
 	    }

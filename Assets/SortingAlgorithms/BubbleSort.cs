@@ -16,11 +16,11 @@ public class BubbleSort : SortingAlgorithm {
         //                 swapped := true
         //             end if
         //         end for
-        //     until not swapped 
+        //     until not swapped s
         // end procedure
-
-        bool swapped;
-        do
+        
+        bool swapped = true;
+        while (swapped == true)
         {
             swapped = false;
             for (int i = 1; i < spheres.Count; i++) {
@@ -31,7 +31,7 @@ public class BubbleSort : SortingAlgorithm {
                     swapped = true;
                 }
             }
-        } while (swapped == false);
+        } 
 
         return spheres;
     }

@@ -9,38 +9,24 @@ public class RecordingBehaviour : MonoBehaviour
     [SerializeField] private ExperimentPort experimentPort;
     [SerializeField] private ExperimentSettings settings;
     [SerializeField] private SphereCollection spheres;
-    [SerializeField] private string destination = "Results/";
     [SerializeField] private RecordingData data;
 
     private FileIO fileIO = new FileIO();
     
     private List<float> recordedTimes = new List<float>();
-    private int samples = 0;
 
     private float frameTotalTime;
     private float frameStartTime;
-
-    private void Start()
-    {
-        fileIO.Directory = destination;
-    }
+    private int samplingCounter;
 
     private void OnEnable() {
         simulationPort.OnBeginUpdate += OnBeginUpdate;
         simulationPort.OnEndUpdate += OnEndUpdate;
-        experimentPort.OnBeginSimulation += OnBeginSimulation;
-        experimentPort.OnEndSimulation += OnEndSimulation;
-        experimentPort.OnBeginExperiment += OnBeginExperiment;
-        experimentPort.OnEndExperiment += OnEndExperiment;
     }
 
     private void OnDisable() { 
         simulationPort.OnBeginUpdate -= OnBeginUpdate;
         simulationPort.OnEndUpdate -= OnEndUpdate;
-        experimentPort.OnBeginSimulation -= OnBeginSimulation;
-        experimentPort.OnEndSimulation -= OnEndSimulation;
-        experimentPort.OnBeginExperiment -= OnBeginExperiment;
-        experimentPort.OnEndExperiment -= OnEndExperiment;
     }
 
     private void OnBeginUpdate()
@@ -50,22 +36,30 @@ public class RecordingBehaviour : MonoBehaviour
     private void OnEndUpdate()
     {
         UnityEngine.Profiling.Profiler.BeginSample("Add Recorded Data", this);
+        
         frameTotalTime = Time.realtimeSinceStartup-frameStartTime;
-        recordedTimes.Add(frameTotalTime);
+        
+        if (samplingCounter >= settings.SampleRate) {
+            samplingCounter = 0;
+            recordedTimes.Add(frameTotalTime);
+        }
+        samplingCounter++;
+        
         if (frameTotalTime >= settings.CancelTime) experimentPort.SignalEndSimulation();
+
         UnityEngine.Profiling.Profiler.EndSample();
     }
 
-    private void OnBeginSimulation()
+    public void ClearSimulationData()
     {
         recordedTimes.Clear();
-        Debug.Log(settings.Algorithm.GetType().Name);
+        samplingCounter = settings.SampleRate; // always sample first frame of simulation
     }
     
-    private void OnEndSimulation()
+    public void StoreSimulationData()
     {
         float averageTime = 0;
-        foreach (int time in recordedTimes)
+        foreach (float time in recordedTimes)
         {
             averageTime += time;
         }
@@ -74,13 +68,12 @@ public class RecordingBehaviour : MonoBehaviour
         data.AddTime(averageTime);
     }
 
-    private void OnBeginExperiment()
+    public void NewExperimentData()
     {
-        fileIO.VerifyWritable();
         recordedTimes.Clear();
     }
 
-    private void OnEndExperiment()
+    public void WriteExperimentData()
     {
         fileIO.SaveFile(data);
     }

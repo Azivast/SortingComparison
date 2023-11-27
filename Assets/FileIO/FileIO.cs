@@ -7,14 +7,12 @@ using UnityEngine;
 
 public class FileIO
 {
-    public string Directory = "Results/";
     private const string EXTENSION = ".csv";
     
     public bool SaveFile(RecordingData data)
     {
         string fileName = DateTime.Now.ToString("yyyy-MM-dd hhmmss") + EXTENSION;
-        System.IO.Directory.CreateDirectory(Directory);
-        using (StreamWriter writer = File.CreateText(Directory+fileName))
+        using (StreamWriter writer = File.CreateText(fileName))
         {
             foreach (string entry in data.data)
             {
@@ -22,17 +20,5 @@ public class FileIO
             }
         }
         return true;
-    }
-
-    public void VerifyWritable()
-    {
-        try
-        {
-            System.IO.Directory.CreateDirectory(Directory);
-        }
-        catch
-        {
-            throw new Exception($"Unable to write to data path {Directory}. Experiment will not be run.");
-        }
     }
 }

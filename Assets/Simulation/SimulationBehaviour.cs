@@ -11,10 +11,21 @@ public class SimulationBehaviour : MonoBehaviour
     [SerializeField] private ExperimentPort experimentPort;
     [SerializeField] private SimulationPort simulationPort;
 
-    [SerializeField]private float elapsedFrames;
+    [SerializeField]private int elapsedFrames;
+
+    private bool running = false;
     
-    private void Update()
-    {
+    private void OnEnable() {
+        experimentPort.OnBeginSimulation += OnStart;
+    }
+
+    private void OnDisable() { 
+        experimentPort.OnBeginSimulation -= OnEnd;
+    }
+    
+    public void Update() {
+        if (!running) return;
+        
         Profiler.BeginSample("Simulation", this);
         simulationPort.SignalBeginUpdate();
         simulationPort.SignalIntegration();
@@ -28,5 +39,12 @@ public class SimulationBehaviour : MonoBehaviour
             elapsedFrames = 0;
         }
         Profiler.EndSample();
+    }
+
+    private void OnStart() {
+        running = true;
+    }
+    private void OnEnd() {
+        running = false;
     }
 }

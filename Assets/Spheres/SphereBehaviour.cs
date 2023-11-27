@@ -7,10 +7,12 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(SpriteRenderer))]
 public class SphereBehaviour : MonoBehaviour {
     private SpriteRenderer sr;
+
     
     private Vector3 direction = Vector3.down;
     private Vector3 initialDirection;
     [SerializeField] private float speed = 2f;
+    [SerializeField] private float speedVariety = 1f;
 
     private Color normalColor = Color.white;
     private Color highlightColor = Color.yellow;
@@ -48,7 +50,8 @@ public class SphereBehaviour : MonoBehaviour {
     public void Setup(Vector2 movementSpace)
     {
         movementRestriction = movementSpace;
-        direction = Random.insideUnitCircle.normalized; //TODO Verify that seed works
+        direction = Random.insideUnitCircle.normalized;
+        speed = Random.Range(speed-speedVariety, speed+speedVariety);
         initialDirection = direction;
     }
     

@@ -8,7 +8,6 @@ public class ExperimentSettings : ScriptableObject
     public int StartSpheres = 20;
     public int MaxSpheres = 20;
     public int SphereIncrease = 20;
-    public int IncreaseInterval = 300;
     public int SpheresToHighlight = 10;
     public float SimulationDuration = 3600;
     public int Seed = 1234567;

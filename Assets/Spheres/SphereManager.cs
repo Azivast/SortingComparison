@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SphereManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class SphereManager : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject sphere = Instantiate(collection.SpherePrefab, transform);
+            GameObject sphere = Instantiate(collection.SpherePrefab, Random.insideUnitCircle, Quaternion.identity, transform);
             collection.Add(sphere, simulationSpace, seed);
         }
     }

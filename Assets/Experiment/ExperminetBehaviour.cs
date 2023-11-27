@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,10 +11,11 @@ public class ExperminetBehaviour : MonoBehaviour
     [SerializeField] private ExperimentPort experimentPort;
     [SerializeField] private RecordingData data;
     [SerializeField] private SphereManager sphereManager;
+    [SerializeField] private RecordingBehaviour recordingBehaviour;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private int startSpheres = 20;
     [SerializeField] private int maxSpheres = 2000;
     [SerializeField] private int sphereIncrease = 20;
-    [SerializeField] private int increaseInterval = 300;
     [SerializeField] private int spheresToHighlight = 10;
     [SerializeField] private float simulationDuration = 3600;
     [SerializeField] private Vector2 simulationSpace = new Vector2(5, 5);
@@ -23,8 +25,7 @@ public class ExperminetBehaviour : MonoBehaviour
     [SerializeField] private float cancelTime = 1.0f;
     
     [SerializeField] private SortingAlgorithm[] AlgortihmsToTest;
-
-    private int currentAlgorithm = 0;
+    
     private bool simulationFinished = false;
 
     private void OnEnable()
@@ -52,7 +53,6 @@ public class ExperminetBehaviour : MonoBehaviour
         settings.StartSpheres = startSpheres;
         settings.MaxSpheres = maxSpheres;
         settings.SphereIncrease = sphereIncrease;
-        settings.IncreaseInterval = increaseInterval;
         settings.SpheresToHighlight = spheresToHighlight;
         settings.SimulationDuration = simulationDuration;
         settings.Seed = seed;
@@ -62,42 +62,43 @@ public class ExperminetBehaviour : MonoBehaviour
 
     private IEnumerator RunExperiments()
     {
-        //TODO: This should be done in RecordingBehaviour
         string firstRow = "spheres";
         foreach (var algorithm in AlgortihmsToTest)
         {
             firstRow += ";" + algorithm.GetType().Name;
         }
         data.Reset(firstRow);
+        recordingBehaviour.NewExperimentData();
         
-        for (int spheres = startSpheres; spheres < maxSpheres; spheres += sphereIncrease) 
+        for (int spheres = startSpheres; spheres <= maxSpheres; spheres += sphereIncrease) 
         {
             data.NewBallAmount(spheres);
             foreach (var algorithm in AlgortihmsToTest)
             {
+                // Setup simulation
                 simulationFinished = false;
                 Random.InitState(settings.Seed);
                 sphereManager.Spawn(spheres, seed, simulationSpace);
-                RunSimulation(algorithm);
+                recordingBehaviour.ClearSimulationData();
+                settings.Algorithm = algorithm;
+                text.text = $"{spheres} spheres : {algorithm.GetType().Name}";
+                
+                // Run algorithm
+                experimentPort.SignalBeginSimulation();
+                
                 yield return new WaitUntil(() => simulationFinished);
-                yield return new WaitForSecondsRealtime(3);
-                //store data
+                
+                // Store results
+                recordingBehaviour.StoreSimulationData();
             }
         }
         
-        //save data
+        recordingBehaviour.WriteExperimentData();
         
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
         Application.Quit();
-    }
-
-    private void RunSimulation(SortingAlgorithm algorithm)
-    {
-        // Run algorithm
-        settings.Algorithm = algorithm;
-        experimentPort.SignalBeginSimulation();
     }
 
     private void OnEndSimulation()
