@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99beb547fd9c6204e90b8e8eeff54aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
+  experimentPort: {fileID: 11400000, guid: f9f625be708bc4f408697a750735d1fd, type: 2}
   simulationPort: {fileID: 11400000, guid: e7da033460bf5434db878dc3f943d87a, type: 2}
+  elapsedFrames: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RecordingBehaviour : MonoBehaviour
@@ -14,47 +15,33 @@ public class RecordingBehaviour : MonoBehaviour
     private FileIO fileIO = new FileIO();
     
     private List<float> recordedTimes = new List<float>();
-
-    private float frameTotalTime;
-    private float frameStartTime;
+    
     private int samplingCounter;
 
     private void OnEnable() {
-        simulationPort.OnResolution += OnResolution;
-        simulationPort.OnEndUpdate += OnEndUpdate;
+        simulationPort.OnNewFrameTime += OnNewFrameTime;
     }
 
-    private void OnDisable() { 
-        simulationPort.OnResolution -= OnResolution;
-        simulationPort.OnEndUpdate -= OnEndUpdate;
+    private void OnDisable() {
+        simulationPort.OnNewFrameTime -= OnNewFrameTime;
     }
-
-    private void OnResolution()
-    {
-        frameStartTime = Time.realtimeSinceStartup;
-    }
-    private void OnEndUpdate()
+    
+    private void OnNewFrameTime(float time)
     {
         UnityEngine.Profiling.Profiler.BeginSample("Add Recorded Data", this);
-        
-        frameTotalTime = Time.realtimeSinceStartup-frameStartTime;
-        
-        if (samplingCounter >= settings.SampleRate) {
+        if (samplingCounter >= settings.RecordRate) {
             samplingCounter = 0;
-            recordedTimes.Add(frameTotalTime);
-            Debug.Log(frameTotalTime);
+            recordedTimes.Add(time);
+            Debug.Log(time);
         }
         samplingCounter++;
-        
-        if (frameTotalTime >= settings.CancelTime) experimentPort.SignalEndSimulation();
-
         UnityEngine.Profiling.Profiler.EndSample();
     }
 
     public void ClearSimulationData()
     {
         recordedTimes.Clear();
-        samplingCounter = settings.SampleRate; // always sample first frame of simulation
+        samplingCounter = settings.RecordRate; // always sample first frame of simulation
     }
     
     public void StoreSimulationData()

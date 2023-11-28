@@ -7,8 +7,11 @@ public class ResolutionBehaviour : MonoBehaviour
 {
     [SerializeField] private ExperimentSettings settings;
     [SerializeField] private SimulationPort simulationPort;
+    [SerializeField] private ExperimentPort experimentPort;
     [SerializeField] private SphereCollection spheres;
 
+    private float frameStartTime, frameTotalTime;
+    
     private void OnEnable() {
         simulationPort.OnResolution += OnResolution;
     }
@@ -19,7 +22,14 @@ public class ResolutionBehaviour : MonoBehaviour
 
     private void OnResolution() {
         UnityEngine.Profiling.Profiler.BeginSample("Resolution", this);
+        frameStartTime = Time.realtimeSinceStartup;
         spheres.Behaviours = settings.Algorithm.Sort(spheres.Behaviours);
+        frameTotalTime = Time.realtimeSinceStartup-frameStartTime;
+        if (frameTotalTime >= settings.CancelTime) {
+            experimentPort.SignalEndSimulation();
+        }
+        else simulationPort.SignalNewFrameTime(frameTotalTime);
+        
         for (int i = 0; i < settings.SpheresToHighlight; i++) {
             spheres.Behaviours[i].Highlighted = true;
         }

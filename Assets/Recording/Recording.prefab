@@ -44,3 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db1e905714d1204db4391d5e4820fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  simulationPort: {fileID: 11400000, guid: e7da033460bf5434db878dc3f943d87a, type: 2}
+  experimentPort: {fileID: 11400000, guid: f9f625be708bc4f408697a750735d1fd, type: 2}
+  settings: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
+  spheres: {fileID: 11400000, guid: 1f359e8c5b6b42246868b79ecbe78757, type: 2}
+  data: {fileID: 11400000, guid: 900dde6b3cfa416468fd96a0c2cf71fd, type: 2}

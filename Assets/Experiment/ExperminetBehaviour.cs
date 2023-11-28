@@ -21,7 +21,7 @@ public class ExperminetBehaviour : MonoBehaviour
     [SerializeField] private Vector2 simulationSpace = new Vector2(5, 5);
     [SerializeField] private int seed = 1234567;
 
-    [SerializeField] private int sampleRate = 10;
+    [SerializeField] private int recordRate = 10;
     [SerializeField] private float cancelTime = 1.0f;
     
     [SerializeField] private SortingAlgorithm[] AlgortihmsToTest;
@@ -50,13 +50,10 @@ public class ExperminetBehaviour : MonoBehaviour
 
     private void UpdateSettings()
     {
-        settings.StartSpheres = startSpheres;
-        settings.MaxSpheres = maxSpheres;
-        settings.SphereIncrease = sphereIncrease;
         settings.SpheresToHighlight = spheresToHighlight;
         settings.SimulationDuration = simulationDuration;
         settings.Seed = seed;
-        settings.SampleRate = sampleRate;
+        settings.RecordRate = recordRate;
         settings.CancelTime = cancelTime;
     }
 

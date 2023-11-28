@@ -382,148 +382,47 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 900dde6b3cfa416468fd96a0c2cf71fd, type: 2}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: text
       value: 
       objectReference: {fileID: 1061189901}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: algorithm
-      value: 
-      objectReference: {fileID: 1343346690}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: cancelTime
-      value: 5
+      propertyPath: maxSpheres
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: maxSpheres
-      value: 20000
+      propertyPath: sampleRate
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: startSpheres
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: sphereManager
       value: 
       objectReference: {fileID: 4225771918480353838}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: experimentPort
-      value: 
-      objectReference: {fileID: 11400000, guid: f9f625be708bc4f408697a750735d1fd, type: 2}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: sphereIncrease
-      value: 500
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: increaseInterval
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: selectedAlgorithm
-      value: 
-      objectReference: {fileID: 1343346691}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: recordingBehaviour
       value: 
       objectReference: {fileID: 276285188}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: simulationDuration
-      value: 300
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: spheresToHighlight
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: simulationBehaviour
-      value: 
-      objectReference: {fileID: 2127793331}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: Algortihms.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: Algortihms.Array.data[0]
-      value: 
-      objectReference: {fileID: 1343346694}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: Algortihms.Array.data[1]
-      value: 
-      objectReference: {fileID: 1343346690}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: Algortihms.Array.data[2]
-      value: 
-      objectReference: {fileID: 1343346691}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: AlgortihmsToTest.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: AlgortihmsToTest.Array.data[0]
-      value: 
-      objectReference: {fileID: 1343346694}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: AlgortihmsToTest.Array.data[1]
-      value: 
-      objectReference: {fileID: 1343346690}
-    - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-      propertyPath: AlgortihmsToTest.Array.data[2]
-      value: 
-      objectReference: {fileID: 1343346691}
     - target: {fileID: 7762028374886505801, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: m_Name
       value: Experiment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
---- !u!1 &1343346687 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7762028374886505801, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
-  m_PrefabInstance: {fileID: 1258037346}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1343346690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343346687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23ca68f07f5bf3944ba3032c50f16156, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1343346691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343346687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31dfacb90bf2cd44b993c1cb8560592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1343346694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343346687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c59213385fe899a41b727c0c9242766d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1363607255
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,10 +699,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3793092819184635990, guid: 85b1efd35d93bda40b32c128e30d92be, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
     - target: {fileID: 5394829589424174223, guid: 85b1efd35d93bda40b32c128e30d92be, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -938,17 +833,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2127793331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-  m_PrefabInstance: {fileID: 2495481395013926755}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99beb547fd9c6204e90b8e8eeff54aa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &598360569530534958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1008,46 +892,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1418599279}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f359e8c5b6b42246868b79ecbe78757, type: 2}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: simulationPort
-      value: 
-      objectReference: {fileID: 11400000, guid: e7da033460bf5434db878dc3f943d87a, type: 2}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7351040851003282270, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
-      propertyPath: spheres.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067fa86d0c70bd74eb385c85bcde354e, type: 3}
 --- !u!1001 &2368987229486067555
@@ -1057,30 +901,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 900dde6b3cfa416468fd96a0c2cf71fd, type: 2}
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: spheres
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f359e8c5b6b42246868b79ecbe78757, type: 2}
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: destination
-      value: Results/
-      objectReference: {fileID: 0}
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: experimentPort
-      value: 
-      objectReference: {fileID: 11400000, guid: f9f625be708bc4f408697a750735d1fd, type: 2}
-    - target: {fileID: 2632446785506277174, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
-      propertyPath: simulationPort
-      value: 
-      objectReference: {fileID: 11400000, guid: e7da033460bf5434db878dc3f943d87a, type: 2}
     - target: {fileID: 2774739125070079650, guid: 5562d60ef7164084ea719fddeeb70997, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1142,42 +962,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simulation
       objectReference: {fileID: 0}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: spheres
-      value: 
-      objectReference: {fileID: 11400000, guid: 1f359e8c5b6b42246868b79ecbe78757, type: 2}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bfdd7c3b9224134e80f8d5e0b9a702f, type: 2}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: sphereSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: sphereParent
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: targetSphere
-      value: 
-      objectReference: {fileID: 1418599279}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: experimentPort
-      value: 
-      objectReference: {fileID: 11400000, guid: f9f625be708bc4f408697a750735d1fd, type: 2}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: numberOfSpheres
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: simulationSpace.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293018140226415092, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
-      propertyPath: simulationSpace.y
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8536039635693504173, guid: 114487fc95e5b3b4899d2749216a7af0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1235,6 +1019,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SphereManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4225771918480353838, guid: d99e8993a3127b9488d16e6b4777d931, type: 3}
+      propertyPath: targetSphere
+      value: 
+      objectReference: {fileID: 1418599279}
     - target: {fileID: 5271411130820555189, guid: d99e8993a3127b9488d16e6b4777d931, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1281,22 +1069,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d99e8993a3127b9488d16e6b4777d931, type: 3}
---- !u!1 &4225771918480353837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2894505436178029091, guid: d99e8993a3127b9488d16e6b4777d931, type: 3}
+--- !u!114 &4225771918480353838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4225771918480353838, guid: d99e8993a3127b9488d16e6b4777d931, type: 3}
   m_PrefabInstance: {fileID: 4225771918480353836}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4225771918480353838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4225771918480353837}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ed38573306b235428eb938eace6ca84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collection: {fileID: 11400000, guid: 1f359e8c5b6b42246868b79ecbe78757, type: 2}
-  targetSphere: {fileID: 1418599279}
