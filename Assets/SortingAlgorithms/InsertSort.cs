@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class InsertSort : SortingAlgorithm
 {
-    private void LogList(int[] list) {
-	    string s = "";
-	    foreach (int i in list) {
-		    s = s + i + ", ";
-	    }
-	    Debug.Log(s);
-    }
-
-    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres)
-    {
-    //     i ← 1
-    //     while i < length(A)
-    //         j ← i
-    //         while j > 0 and A[j-1] > A[j]
-    //             swap A[j] and A[j-1]
-    //             j ← j - 1
-    //         end while
-    //         i ← i + 1
-    //     end while
-    //
-    // TODO: Better implementation available on wikipedia
-    
+	//     i ← 1
+	//     while i < length(A)
+	//         j ← i
+	//         while j > 0 and A[j-1] > A[j]
+	//             swap A[j] and A[j-1]
+	//             j ← j - 1
+	//         end while
+	//         i ← i + 1
+	//     end while
+	//
+    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres) {
     int i = 1;
-    while (i < spheres.Count) { // TODO: Replace with for-loop
+    while (i < spheres.Count) {
 	    int j = i;
 	    while (j > 0 && spheres[j-1].Distance > spheres[j].Distance) {
 		    (spheres[j-1], spheres[j]) = (spheres[j], spheres[j-1]);

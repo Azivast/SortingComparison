@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class MergeSort : SortingAlgorithm
 {
-    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres) {
-	// function merge_sort(list m) is
+    // function merge_sort(list m) is
     // // Base case. A list of zero or one elements is sorted, by definition.
     // if length of m ≤ 1 then
     //     return m
@@ -28,6 +27,7 @@ public class MergeSort : SortingAlgorithm
 
     // // Then merge the now-sorted sublists.
     // return merge(left, right)
+    public override List<SphereBehaviour> Sort(List<SphereBehaviour> spheres) {
     	if (spheres.Count <= 1) return spheres;
 
         int leftCapacity = Mathf.CeilToInt(spheres.Count / 2f);
@@ -64,7 +64,7 @@ public class MergeSort : SortingAlgorithm
         }
 
         // Either left or right may have elements left; consume them.
-        // (Only one of the following loops will actually be entered.)'
+        // (Only one of the following loops will actually be entered.)
         while (leftIndex != left.Count) {
             result.Add(left[leftIndex]);
             leftIndex++;
