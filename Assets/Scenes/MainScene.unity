@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: startSpheres
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: sphereManager
@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132223538895783282, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: spheresToHighlight
-      value: 25
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7762028374886505801, guid: 4462f30ffe4eb294b810416fe370ebbf, type: 3}
       propertyPath: m_Name
