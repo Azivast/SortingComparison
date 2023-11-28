@@ -20,16 +20,16 @@ public class RecordingBehaviour : MonoBehaviour
     private int samplingCounter;
 
     private void OnEnable() {
-        simulationPort.OnBeginUpdate += OnBeginUpdate;
+        simulationPort.OnResolution += OnResolution;
         simulationPort.OnEndUpdate += OnEndUpdate;
     }
 
     private void OnDisable() { 
-        simulationPort.OnBeginUpdate -= OnBeginUpdate;
+        simulationPort.OnResolution -= OnResolution;
         simulationPort.OnEndUpdate -= OnEndUpdate;
     }
 
-    private void OnBeginUpdate()
+    private void OnResolution()
     {
         frameStartTime = Time.realtimeSinceStartup;
     }
@@ -42,6 +42,7 @@ public class RecordingBehaviour : MonoBehaviour
         if (samplingCounter >= settings.SampleRate) {
             samplingCounter = 0;
             recordedTimes.Add(frameTotalTime);
+            Debug.Log(frameTotalTime);
         }
         samplingCounter++;
         
